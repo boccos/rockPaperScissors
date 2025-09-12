@@ -32,6 +32,12 @@ function playGame(){
 
     function playAgain(){
         let again = window.prompt("Do you want to play again? (y/n)").toLowerCase();
+
+        while (again != "yes" && again != "y" && again != "no" && again != "n")
+        {
+            again = window.prompt("Invalid input. Do you want to play again? (y/n)").toLowerCase();
+        }
+
         if (again == "yes" || again == "y"){
             playGame();
         }
