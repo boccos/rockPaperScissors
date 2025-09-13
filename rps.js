@@ -1,4 +1,3 @@
-console.log("Hello world");
 playGame();
 
 
@@ -8,12 +7,13 @@ function playGame(){
     let roundNumber = 1;
 
     let choice = parseInt(window.prompt("Enter the number of rounds you would like to play."));
-
     for (let i = 0; i < choice; i++){
         console.log(playRound(getHumanChoice(), getComputerChoice()));
     }
+
     overallWinner();
     playAgain();
+
 
     function overallWinner(){
         if (humanScore > computerScore)
@@ -29,6 +29,7 @@ function playGame(){
             console.log("It was a tie! Final Score: " + humanScore + ":" + computerScore);
         }
     }
+
 
     function playAgain(){
         let again = window.prompt("Do you want to play again? (y/n)").toLowerCase();
@@ -47,6 +48,7 @@ function playGame(){
         }
     }
 
+
     function getComputerChoice(){
         let randomNumber = Math.random() * 3;
 
@@ -62,7 +64,6 @@ function playGame(){
             return "scissors";
         }
     }
-
 
 
     function getHumanChoice(){
