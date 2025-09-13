@@ -9,6 +9,11 @@ const buttonScissors = document.getElementById("scissors");
 let score = document.querySelector("#scores");
 let result = document.querySelector("#gameResult");
 
+const restartGame = document.createElement("button");
+restartGame.textContent = "Restart";
+
+
+
 buttonRock.addEventListener("click", () => {
     let result = round("rock");
 });
@@ -19,6 +24,17 @@ buttonPaper.addEventListener("click", () => {
 
 buttonScissors.addEventListener("click", () => {
     let result = round("scissors");
+});
+
+restartGame.addEventListener("click", () => {
+    restartGame.remove();
+    humanScore = 0;
+    computerScore = 0;
+    buttonRock.disabled = false;
+    buttonPaper.disabled = false;
+    buttonScissors.disabled = false;
+    score.textContent = "";
+    result.textContent = "";
 });
 
 function round(button){
@@ -99,24 +115,19 @@ function overallWinner(){
 
 
 function playAgain(){
-    let again = window.prompt("Do you want to play again? (y/n)").toLowerCase();
+    result.after(restartGame);
+}
 
-    while (again != "yes" && again != "y" && again != "no" && again != "n")
-    {
-        again = window.prompt("Invalid input. Do you want to play again? (y/n)").toLowerCase();
-    }
-
-    if (again == "yes" || again == "y"){
-        playGame();
-    }
-
-    else{
-        console.log("Thanks for playing!");
-    }
+function disableButtons(){
+    buttonRock.disabled = true;
+    buttonPaper.disabled = true;
+    buttonScissors.disabled = true;
 }
 
 function checkEndGame(){
     if (humanScore == 5 || computerScore == 5){
         result.textContent = overallWinner();
+        disableButtons();
+        playAgain();
     }
 }
