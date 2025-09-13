@@ -1,122 +1,122 @@
-playGame();
+let humanScore = 0;
+let computerScore = 0;
+let roundNumber = 1;
 
+const buttonRock = document.getElementById("rock");
+const buttonPaper = document.getElementById("paper");
+const buttonScissors = document.getElementById("scissors");
 
-function playGame(){
-    let humanScore = 0;
-    let computerScore = 0;
-    let roundNumber = 1;
+let score = document.querySelector("#scores");
+let result = document.querySelector("#gameResult");
 
-    let choice = parseInt(window.prompt("Enter the number of rounds you would like to play."));
-    for (let i = 0; i < choice; i++){
-        console.log(playRound(getHumanChoice(), getComputerChoice()));
+buttonRock.addEventListener("click", () => {
+    let result = round("rock");
+});
+
+buttonPaper.addEventListener("click", () => {
+    let result = round("paper");
+});
+
+buttonScissors.addEventListener("click", () => {
+    let result = round("scissors");
+});
+
+function round(button){
+    let result = playRound(button, getComputerChoice())
+    score.textContent = result + " | " + getScore();
+    checkEndGame();
+}
+
+function getComputerChoice(){
+    let randomNumber = Math.random() * 3;
+
+    if (randomNumber < 1){
+        return "rock";
     }
 
-    overallWinner();
-    playAgain();
-
-
-    function overallWinner(){
-        if (humanScore > computerScore)
-        {
-            console.log("You win! Final Score: " + humanScore + ":" + computerScore);
-        }
-        if (humanScore < computerScore)
-        {
-            console.log("You lost! Final Score: " + humanScore + ":" + computerScore);
-        }
-        if (humanScore == computerScore)
-        {
-            console.log("It was a tie! Final Score: " + humanScore + ":" + computerScore);
-        }
+    if (randomNumber < 2){
+        return "paper";
     }
 
+    return "scissors";
+}
 
-    function playAgain(){
-        let again = window.prompt("Do you want to play again? (y/n)").toLowerCase();
+function getScore(){
+    return "Score: " + humanScore + " : " + computerScore;
+}
 
-        while (again != "yes" && again != "y" && again != "no" && again != "n")
-        {
-            again = window.prompt("Invalid input. Do you want to play again? (y/n)").toLowerCase();
-        }
-
-        if (again == "yes" || again == "y"){
-            playGame();
-        }
-
-        else{
-            console.log("Thanks for playing!");
-        }
+function playRound(humanChoice, computerChoice){
+    if (humanChoice == "rock" && computerChoice == "scissors"){
+        humanScore++;
+        return "You win! " + humanChoice + " beats " + computerChoice;
     }
 
-
-    function getComputerChoice(){
-        let randomNumber = Math.random() * 3;
-
-        if (randomNumber < 1){
-            return "rock";
-        }
-
-        if (randomNumber < 2){
-            return "paper";
-        }
-
-        if (randomNumber < 3){
-            return "scissors";
-        }
+    if (humanChoice == "paper" && computerChoice == "rock"){
+        humanScore++;
+        return "You win! " + humanChoice + " beats " + computerChoice;
     }
 
-
-    function getHumanChoice(){
-        let choice = window.prompt( roundNumber + " Choose between rock, paper, and scissors").toLowerCase();
-    
-        while (choice != "rock" && choice != "paper" && choice != "scissors"){
-            if (choice == "scissor"){
-                choice = window.prompt("Invalid choice (Did you mean scissors?). Choose between rock, paper, and scissors").toLowerCase();
-            }
-
-            else{
-                choice = window.prompt("Invalid choice. Choose between rock, paper, and scissors").toLowerCase();
-            }
-        }
-        roundNumber++;
-
-        return choice;
+    if (humanChoice == "scissors" && computerChoice == "paper"){
+        humanScore++;
+        return "You win! " + humanChoice + " beats " + computerChoice;
     }
-
-
-    function playRound(humanChoice, computerChoice){
-        if (humanChoice == "rock" && computerChoice == "scissors"){
-            humanScore++;
-            return "You win! " + humanChoice + " beats " + computerChoice;
-        }
-
-        if (humanChoice == "paper" && computerChoice == "rock"){
-            humanScore++;
-            return "You win! " + humanChoice + " beats " + computerChoice;
-        }
-
-        if (humanChoice == "scissors" && computerChoice == "paper"){
-            humanScore++;
-            return "You win! " + humanChoice + " beats " + computerChoice;
-        }
  
-        if (humanChoice == "paper" && computerChoice == "scissors"){
-            computerScore++;
-            return "You lose! " + computerChoice + " beats " + humanChoice;
-        }
+    if (humanChoice == "paper" && computerChoice == "scissors"){
+        computerScore++;
+        return "You lose! " + computerChoice + " beats " + humanChoice;
+    }
 
-        if (humanChoice == "rock" && computerChoice == "paper"){
-            computerScore++;
-            return "You lose! " + computerChoice + " beats " + humanChoice;
-        }
+    if (humanChoice == "rock" && computerChoice == "paper"){
+        computerScore++;
+        return "You lose! " + computerChoice + " beats " + humanChoice;
+    }
 
-        if (humanChoice == "scissors" && computerChoice == "rock"){
-            computerScore++;
-            return "You lose! " + computerChoice + " beats " + humanChoice;
-        }
+    if (humanChoice == "scissors" && computerChoice == "rock"){
+        computerScore++;
+        return "You lose! " + computerChoice + " beats " + humanChoice;
+    }
 
-        if (humanChoice == computerChoice){
-            return "Its a tie!";
-        }
+    if (humanChoice == computerChoice){
+        return "Its a tie!";
+    }
+}
+
+
+function overallWinner(){
+    if (humanScore > computerScore)
+    {
+        return "You win! Final Score: " + humanScore + ":" + computerScore;
+    }
+    if (humanScore < computerScore)
+    {
+        return "You lost! Final Score: " + humanScore + ":" + computerScore;
+    }
+    if (humanScore == computerScore)
+    {
+        return "It was a tie! Final Score: " + humanScore + ":" + computerScore;
+    }
+}
+
+
+function playAgain(){
+    let again = window.prompt("Do you want to play again? (y/n)").toLowerCase();
+
+    while (again != "yes" && again != "y" && again != "no" && again != "n")
+    {
+        again = window.prompt("Invalid input. Do you want to play again? (y/n)").toLowerCase();
+    }
+
+    if (again == "yes" || again == "y"){
+        playGame();
+    }
+
+    else{
+        console.log("Thanks for playing!");
+    }
+}
+
+function checkEndGame(){
+    if (humanScore == 5 || computerScore == 5){
+        result.textContent = overallWinner();
     }
 }
