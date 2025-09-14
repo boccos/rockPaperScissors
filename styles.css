@@ -34,8 +34,16 @@ button {
     cursor: pointer;
 }
 
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
 button:hover {
-    background-color: #555 !important;
+  animation: wobble 0.5s linear infinite;
 }
 
 #scores, #gameResult {
