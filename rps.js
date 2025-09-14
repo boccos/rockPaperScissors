@@ -130,6 +130,18 @@ function disableButtons(){
 function checkEndGame(){
     if (humanScore == 5 || computerScore == 5){
         result.textContent = overallWinner();
+
+        if (humanScore > computerScore) {
+            buttonRock.style.backgroundColor = "green";
+            buttonPaper.style.backgroundColor = "green";
+            buttonScissors.style.backgroundColor = "green";
+        } 
+        else {
+            buttonRock.style.backgroundColor = "red";
+            buttonPaper.style.backgroundColor = "red";
+            buttonScissors.style.backgroundColor = "red";
+        }
+
         disableButtons();
         playAgain();
     }
