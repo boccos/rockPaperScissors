@@ -12,7 +12,7 @@ let score = document.querySelector("#scores");
 let result = document.querySelector("#gameResult");
 
 const restartGame = document.createElement("button");
-restartGame.textContent = "Restart";
+restartGame.textContent = "Restart 🔄";
 
 buttonRock.addEventListener("click", () => {
     buttons.forEach(b => b.style.backgroundColor = "#333");
