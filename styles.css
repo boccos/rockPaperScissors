@@ -18,7 +18,7 @@ h1 {
 
 .buttons {
     display: flex;
-    gap: 8vw;
+    gap: 3vw;
     margin-bottom: 3vw;
 }
 
@@ -26,6 +26,7 @@ button {
     width: 12vw;
     height: 12vw;
     font-size: 2vw;
+    margin: 2vw;
     border: none;
     border-radius: 2vw;
     background-color: #333;
