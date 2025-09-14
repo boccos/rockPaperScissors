@@ -17,22 +17,44 @@ restartGame.textContent = "🔄 Restart";
 buttonRock.addEventListener("click", () => {
     buttons.forEach(b => b.style.backgroundColor = "#333");
     let result = round("rock");
-    if (roundWin === true) buttonRock.style.backgroundColor = "green";
-    else if (roundWin === false) buttonRock.style.backgroundColor = "red";
+    
+    if (roundWin == "true") {
+        buttonRock.style.backgroundColor = "green";
+    }
+    else if (roundWin == "false") {
+        buttonRock.style.backgroundColor = "red";
+    }
+    else if (roundWin == "tie"){
+        buttonRock.style.backgroundColor = "#444";
+    }
 });
 
 buttonPaper.addEventListener("click", () => {
     buttons.forEach(b => b.style.backgroundColor = "#333");
     let result = round("paper");
-    if (roundWin === true) buttonPaper.style.backgroundColor = "green";
-    else if (roundWin === false) buttonPaper.style.backgroundColor = "red";
+    if (roundWin == "true") {
+        buttonPaper.style.backgroundColor = "green";
+    }
+    else if (roundWin == "false") {
+        buttonPaper.style.backgroundColor = "red";
+    }
+    else if (roundWin == "tie") {
+        buttonPaper.style.backgroundColor = "#444";
+    }
 });
 
 buttonScissors.addEventListener("click", () => {
     buttons.forEach(b => b.style.backgroundColor = "#333");
     let result = round("scissors");
-    if (roundWin === true) buttonScissors.style.backgroundColor = "green";
-    else if (roundWin === false) buttonScissors.style.backgroundColor = "red";
+    if (roundWin == "true") {
+        buttonScissors.style.backgroundColor = "green";
+    }
+    else if (roundWin == "false") {
+        buttonScissors.style.backgroundColor = "red";
+    }
+    else if (roundWin == "tie") {
+        buttonScissors.style.backgroundColor = "#444";
+    }
 });
 
 restartGame.addEventListener("click", () => {
@@ -50,12 +72,7 @@ restartGame.addEventListener("click", () => {
 });
 
 function wLResult(winOrLose){
-    if (winOrLose == "true"){
-        roundWin = true;
-    }
-    if (winOrLose == "false"){
-        roundWin = false;
-    }
+    roundWin = winOrLose;
 }
 
 function round(button){
@@ -107,6 +124,7 @@ function playRound(humanChoice, computerChoice){
         return "You lose! " + computerChoice + " beats " + humanChoice;
     }
     if (humanChoice == computerChoice){
+        wLResult("tie");
         return "Its a tie!";
     }
 }
